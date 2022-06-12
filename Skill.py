@@ -1,4 +1,5 @@
 from config import *
+from buff_creator import *
 
 class Skill():
     def __init__(self, power, icon, name, x, y):
@@ -17,7 +18,7 @@ class Skill():
 
 class FireSkill(Skill):
     def action(self, owner, target):
-        target.take_damage(100)
+        target.TakeEffect(fire_effect, 3)
 
 class WaterSkill(Skill):
     def action(self, owner, target):
@@ -29,9 +30,11 @@ class WindSkill(Skill):
 
 class EarthSkill(Skill):
     def action(self, owner, target):
-        owner.take_damage(-100)
+        owner.TakeEffect(armour_effect, 10)
+        #Добавляет броню
 
 
 class SteamSkill(Skill):
     def action(self, owner, target):
         owner.take_damage(-100)
+        #Увеличивает уклонения
