@@ -9,8 +9,8 @@ background = transform.scale((image.load('bg.jpg')), screen_size)
 clock = time.Clock()
 
 
-player1 = Player('player.png', 1000, 100, 300, "Player 1", False)
-player2 = Player('player.png', 1000, 600, 300, "Player 2", True)
+player1 = Player('1.png', 1000, 100, 300, "Player 1", True)
+player2 = Player('1.png', 1000, 600, 300, "Player 2", False)
 bot = Bot(player2, player1)
 button_attack = Button(100, 100, "cloud.png", "Атаковать")
 

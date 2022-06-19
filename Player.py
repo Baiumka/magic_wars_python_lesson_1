@@ -17,6 +17,34 @@ class Player():
         self.spell_list = []
         self.effects = {}
 
+
+        a1 = transform.scale(image.load("1.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
+        a1 = transform.flip(a1, flip, False)
+        a2 = transform.scale(image.load("2.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
+        a2 = transform.flip(a2, flip, False)
+        a3 = transform.scale(image.load("3.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
+        a3 = transform.flip(a3, flip, False)
+        a4 = transform.scale(image.load("4.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
+        a4 = transform.flip(a4, flip, False)
+        self.animWalk = [a1, a2, a3, a4]
+
+        a1 = transform.scale(image.load("1.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
+        a1 = transform.flip(a1, flip, False)
+        a2 = transform.scale(image.load("2.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
+        a2 = transform.flip(a2, flip, False)
+        a3 = transform.scale(image.load("3.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
+        a3 = transform.flip(a3, flip, False)
+        a4 = transform.scale(image.load("4.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
+        a4 = transform.flip(a4, flip, False)
+        self.animAttack = [a1, a2, a3, a4]
+
+        self.currentF = 0
+
+
+        self.activeAnim = self.animWalk
+
+
+
     def TakeEffect(self, effect, turns):
         if effect in self.effects:
             self.effects[effect] += turns
@@ -37,6 +65,7 @@ class Player():
             i += 1
             new_projectile = Projectile(skill, self, target, i * 5)
             self.projectiles.append(new_projectile)
+        self.activeAnim = self.animAttack
         self.spell_list.clear()
         self.end_turn()
 
@@ -64,7 +93,10 @@ class Player():
                 self.effects[effect] -= 1
 
     def show(self):
-        window.blit(self.model, (self.rect.x, self.rect.y))
+        window.blit(self.activeAnim[self.currentF//10], (self.rect.x, self.rect.y))
+        self.currentF += 1
+        if self.currentF > (len(self.activeAnim)-1)*10:
+            self.currentAnim = 0
 
         draw.rect(window, (0, 0, 0), (self.rect.x-2, self.rect.y-50-2, (self.maxHP / 10)+4, 10+4))
         draw.rect(window, (100, 0, 0), (self.rect.x, self.rect.y-50, self.maxHP / 10, 10))
