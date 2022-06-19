@@ -17,7 +17,6 @@ class Player():
         self.spell_list = []
         self.effects = {}
 
-
         a1 = transform.scale(image.load("1.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
         a1 = transform.flip(a1, flip, False)
         a2 = transform.scale(image.load("2.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
@@ -27,6 +26,7 @@ class Player():
         a4 = transform.scale(image.load("4.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
         a4 = transform.flip(a4, flip, False)
         self.animWalk = [a1, a2, a3, a4]
+
 
         a1 = transform.scale(image.load("1.png"), (PLAYER_SIZE_X, PLAYER_SIZE_Y))
         a1 = transform.flip(a1, flip, False)
@@ -96,7 +96,7 @@ class Player():
         window.blit(self.activeAnim[self.currentF//10], (self.rect.x, self.rect.y))
         self.currentF += 1
         if self.currentF > (len(self.activeAnim)-1)*10:
-            self.currentAnim = 0
+            self.currentF = 0
 
         draw.rect(window, (0, 0, 0), (self.rect.x-2, self.rect.y-50-2, (self.maxHP / 10)+4, 10+4))
         draw.rect(window, (100, 0, 0), (self.rect.x, self.rect.y-50, self.maxHP / 10, 10))
